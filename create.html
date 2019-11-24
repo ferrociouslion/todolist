@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Todos</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">TODOS</a>
+          </div>
+          
+          <ul class="nav navbar-nav navbar-right">
+           
+             <li class="active"><a href="./view.html">Home</a></li>
+          </ul>
+        </div>
+      </nav>
+<div >
+
+<div class="container" style="width: 500px; margin-top: 100px;">
+  <h2>Make your Todos</h2>
+  <div >
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input type="text" class="form-control" id="title" name="title">
+    </div>
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <input type="text" class="form-control" id="description" name="description">
+    </div>
+    <button onclick="addtodo()" class="btn btn-default">Submit</button>
+</div>
+</div>
+</div>
+
+<script>
+
+    const addtodo = ()=> {
+       
+        var title = $("#title").val();
+        var description = $("#description").val();
+        var userId= parseInt(localStorage.getItem("userId"));
+        
+        var data = {
+            title,
+            description,
+            userId
+        }
+        console.log(data)
+        
+        $.post("http://localhost:8080/create",
+        
+            data,
+    function(data, status){
+        
+    alert(data)
+    });
+    }
+    window.location.href = "./view.html"
+
+</script>
+</body>
+</html>

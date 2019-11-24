@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>TodoList</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </head>
+<body>
+
+<div class="container" style="width: 500px; margin-top: 100px;">
+  <h2>Forgot to join?!</h2>
+  <div >
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+    </div>
+    <div class="form-group">
+            <label for="phone">Phone No:</label>
+            <input type="phone" class="form-control" id="phone" placeholder="Enter 10 digit phone no" name="phone">
+          </div>
+          <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="name" class="form-control" id="name" placeholder="Enter your name" name="name">
+              </div>      
+    
+    <button onclick="signupfunction()" class="btn btn-default">Submit</button>
+</div>
+</div>
+
+
+<script>
+
+    const signupfunction = ()=> {
+       
+        var email = $("#email").val();
+        var phone = $("#phone").val();
+        var name = $("#name").val();
+        var password=$("#password").val();
+        
+        var data = {
+            email,
+            phone,
+            name,
+            password
+        }
+        console.log(data)
+        
+        $.post("http://localhost:8080/signup",
+        
+            data,
+    function(data, status){
+      window.location.href = "./login.html"
+       
+    alert(data);
+    });
+    }
+
+</script>
+</body>
+</html>

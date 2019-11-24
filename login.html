@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Todo list</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+</head>
+
+<body>
+<div class="container" style="width: 500px; margin-top: 100px;">
+  <h2>Already signed in?!</h2>
+  <div >
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+    </div>
+    
+    <div class="checkbox">
+      <label><input type="checkbox" name="remember"> Remember me</label>
+    </div>
+    <button onclick="loginfunction()" class="btn btn-default">Submit</button>
+    <br>
+    <h2>Not yet signed in?!</h2>
+    <a href="./signup.html" class="btn btn-default">Signup</a>
+</div>
+</div>
+
+
+<script>
+
+    const loginfunction = ()=> {  
+        var email = $("#email").val();
+        var password=$("#password").val();
+        
+        var data = {
+            email,          
+            password
+        }
+        console.log(data)
+        
+        $.get("http://localhost:8080/login",
+        
+            data,
+    function(data, status){
+      console.log(data);
+      if(data.data.userId == -1){
+        alert(data.msg);
+      }else {
+        localStorage.setItem("userId", data.data.userId);
+      window.location.href = "./view.html"
+      }
+
+    }
+  );
+    }
+
+
+      
+</script>
+</body>
+</html>
