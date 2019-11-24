@@ -6,9 +6,10 @@ module.exports ={
         con.connect((err)=>{
         if(err) throw err;
         console.log('Connected!');
-        // var sqql=`Select * from todolist where userId=${req.query.userId} limit 10 offset 10`; 
+        var sqql=`Select * from todolist where userId=${req.query.userId} limit 10 offset 0`; 
+        console.log(sqql)
        // console.log(res.query.userId)
-          var sqql=`Select * from todolist`;  
+          // var sqql=`Select * from todolist`;  
           con.query(sqql,(e,r)=>{
                if(err) throw(err);
                  console.log(r)
